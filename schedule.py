@@ -15,6 +15,10 @@ class ScheduleCollector:
             driver.get("https://docs.google.com/spreadsheets/d/e/2PACX-1vRXLWDLpnv-108LNY1vMSst-yvrWKqGlytCjlt2Qauid7gv7x2MLzKsO0fPWJ9Cfxj3AfevBvc9gGC0/pubhtml")
             while True:
                 self.find_schedule(driver)
+    def find_schedule(self,driver):
+        table=driver.find_element(By.ID,"sheet-button-1944748597")
+        table.click()
+        sleep(5)
 
 def main():
     collector = ScheduleCollector()
