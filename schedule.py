@@ -1,3 +1,6 @@
+import mail_sender
+from mail_sender import EmailSender
+
 from time import sleep
 
 import datetime
@@ -39,7 +42,8 @@ class ScheduleCollector:
             self.previous_schedule = current_schedule
             print("Schedule initialized.")
         elif self.previous_schedule != current_schedule:
-            print(f"Schedule changed at {today}!")
+            email_sender=EmailSender()
+            email_sender.send_email(f"Schedule has been changed at {today}. Please check your new schedule!")
             self.previous_schedule = current_schedule
         else:
             print(f"No changes detected at {today}.")
