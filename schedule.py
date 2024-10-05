@@ -21,9 +21,9 @@ class ScheduleCollector:
     def start(self):
         options = webdriver.ChromeOptions()
 
-        url="https://docs.google.com/spreadsheets/d/e/2PACX-1vRXLWDLpnv-108LNY1vMSst-yvrWKqGlytCjlt2Qauid7gv7x2MLzKsO0fPWJ9Cfxj3AfevBvc9gGC0/pubhtml"
+        self.url="https://docs.google.com/spreadsheets/d/e/2PACX-1vRXLWDLpnv-108LNY1vMSst-yvrWKqGlytCjlt2Qauid7gv7x2MLzKsO0fPWJ9Cfxj3AfevBvc9gGC0/pubhtml"
         with webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=options) as driver:
-            driver.get(url)
+            driver.get(self.url)
             while True:
                 self.find_schedule(driver)
                 sleep(3) 
@@ -43,7 +43,7 @@ class ScheduleCollector:
             print("Schedule initialized.")
         elif self.previous_schedule != current_schedule:
             email_sender=EmailSender()
-            email_sender.send_email(f"Schedule has been changed at {today}. Please check your new schedule!")
+            email_sender.send_email(f"Schedule has been changed at {today}. Please check your new schedule!\n"+self.url)
             self.previous_schedule = current_schedule
         else:
             print(f"No changes detected at {today}.")
