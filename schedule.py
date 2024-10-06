@@ -20,7 +20,9 @@ class ScheduleCollector:
 
     def start(self):
         options = webdriver.ChromeOptions()
-
+        options.add_argument('--headless')
+        options.add_argument('--no-sandbox')
+        options.add_argument('--disable-dev-shm-usage')
         self.url="https://docs.google.com/spreadsheets/d/e/2PACX-1vRXLWDLpnv-108LNY1vMSst-yvrWKqGlytCjlt2Qauid7gv7x2MLzKsO0fPWJ9Cfxj3AfevBvc9gGC0/pubhtml"
         with webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=options) as driver:
             driver.get(self.url)
