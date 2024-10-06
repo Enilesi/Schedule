@@ -1,4 +1,4 @@
-import mail_sender
+
 from mail_sender import EmailSender
 
 from time import sleep
